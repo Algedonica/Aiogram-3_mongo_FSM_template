@@ -7,14 +7,12 @@ load_dotenv()
 client = pymongo.MongoClient(str(os.getenv("db_connect")))
 states_connect=str(os.getenv("states_connect"))
 
-db = client.s4bot
+db = client.db
 
 settings_collection = db.settings
 bots_collection=db.bots
 
 settings_obj=settings_collection.find_one({"check":"this"})
-
-
 
 MAIN_BOT_TOKEN = str(os.getenv("BOT_TOKEN"))
 
@@ -29,11 +27,3 @@ OTHER_BOTS_URL = f"{BASE_URL}{OTHER_BOTS_PATH}"
 
 WEB_SERVER_HOST = str(os.getenv("WEB_SERVER_HOST"))
 WEB_SERVER_PORT = int(str(os.getenv("WEB_SERVER_PORT")))
-
-
-
-# ip = os.getenv("ip")
-
-
-
-
