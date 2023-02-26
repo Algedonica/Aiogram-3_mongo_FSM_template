@@ -1,22 +1,10 @@
-import asyncio
 import logging
-from os import getenv
-
-from typing import Any, Dict, Union
-
 from aiohttp import web
-from states.ccstates import ProjectManage
-from aiogram.fsm.context import FSMContext
 
 from middlewares import ThrottlingMiddleware
-from data.config import MAIN_BOT_TOKEN, BASE_URL, OTHER_BOTS_PATH, WEB_SERVER_HOST, WEB_SERVER_PORT, MAIN_BOT_PATH
+from data.config import BASE_URL, OTHER_BOTS_PATH, WEB_SERVER_HOST, WEB_SERVER_PORT, MAIN_BOT_PATH
 
-from aiogram import Bot, Dispatcher, F, Router
-
-from aiogram.exceptions import TelegramUnauthorizedError
-from aiogram.filters import Command, CommandObject
-from aiogram.types import Message
-from aiogram.utils.token import TokenValidationError, validate_token
+from aiogram import Bot, Dispatcher
 from aiogram.webhook.aiohttp_server import (
     SimpleRequestHandler,
     TokenBasedRequestHandler,
@@ -24,7 +12,6 @@ from aiogram.webhook.aiohttp_server import (
 )
 
 from loader import bot,bot_settings, storage
-
 
 from handlers.users.start import main_router
 from handlers.users.start_multi import form_router
