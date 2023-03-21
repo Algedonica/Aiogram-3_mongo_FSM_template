@@ -21,7 +21,6 @@ class MongoStorage(BaseStorage):
 
     async def get_state(self, bot: Bot, key: StorageKey) -> Optional[str]:
         data = await self.collection.find_one({'key': key.__dict__})
-        print(data)
         if data:
             return data.get('state')
         return None
@@ -31,8 +30,8 @@ class MongoStorage(BaseStorage):
 
     async def get_data(self, bot: Bot, key: StorageKey) -> Dict[str, Any]:
         data = await self.collection.find_one({'key': key.__dict__})
-        if data:
-            return data.get('data')
+        if data :
+            return data
         else:
             return {}
 
@@ -50,6 +49,10 @@ class MongoStorage(BaseStorage):
         """
         pass
 
+    # async def clear(self) -> None:
+    #     await self.set_state(state=None)
+    #     await self.set_data({})
+
 
 
 def resolve_state(value):
@@ -61,3 +64,5 @@ def resolve_state(value):
         return value
 
 
+
+# state.key = StorageKey(bot_id=botid, chat_id=chat_id, user_id=userid, destiny='default')
